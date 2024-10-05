@@ -60,18 +60,20 @@ const MarkedParameters = () => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200">
-      <h2 className="text-lg font-semibold mb-4">Marked</h2>
-      <GraphsCard parameters={parameters} handleCardClick={handleCardClick} formatDate={formatDate} />
+    <div className="bg-white bg-opacity-45 backdrop-blur-lg w-full shadow-lg rounded-lg p-6 border border-gray-200">
+      <div className="md:w-2/3">
+        <h2 className="text-lg font-semibold mb-4">Marked</h2>
+        <GraphsCard parameters={parameters} handleCardClick={handleCardClick} formatDate={formatDate} />
 
-      {selectedParameter && (
-        <GraphModal
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          selectedParameter={selectedParameter}
-          onSave={handleSaveChanges}
-        />
-      )}
+        {selectedParameter && (
+          <GraphModal
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            selectedParameter={selectedParameter}
+            onSave={handleSaveChanges}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -13,12 +13,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div id="dashboard" className="min-h-screen pt-16">
+    <div id="dashboard" className="min-h-screen">
       <Navbar toggleSidebar={toggleSidebar} />
       <div className="flex flex-col md:flex-row w-full px-4 transition-all duration-300">
         <div
           id="middle"
-          className={`flex flex-col justify-around w-full md:w-4/5 p-4 space-y-8`}
+          className={`flex flex-wrap justify-start w-full md:w-4/5 p-4 space-y-8`}
         >
           <SelfMonitoringParametersGraph />
           <MarkedParameters />

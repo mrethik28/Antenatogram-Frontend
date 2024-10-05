@@ -11,7 +11,7 @@ const GraphsCard = ({ parameters, handleCardClick, formatDate }) => {
             className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => handleCardClick(parameter)}
           >
-            <h3 className="text-md font-semibold mb-2">{parameter.id}</h3>
+            <h3 className="text-md text-center font-semibold mb-2">{parameter.id}</h3>
             <MyResponsiveLine
               data={parameter.data.map((d) => parseFloat(d.value))}
               labels={parameter.data.map((d) => formatDate(d.date))}

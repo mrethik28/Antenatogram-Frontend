@@ -10,7 +10,6 @@ const LandingPage = () => {
           </p>
         </section>
         <section id="features" className="mb-12 fade-in-up">
-          <h3 className="text-2xl font-bold mb-4 text-center">Features</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-6 bg-white rounded-lg shadow-lg text-center fade-in-up">
               <h4 className="text-xl font-bold mb-2">Patient Information</h4>
@@ -27,7 +26,6 @@ const LandingPage = () => {
           </div>
         </section>
         <section id="benefits" className="mb-12 fade-in-up">
-          <h3 className="text-2xl font-bold mb-4 text-center">Benefits</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-6 bg-white rounded-lg shadow-lg text-center fade-in-up">
               <h4 className="text-xl font-bold mb-2">Improved Patient Care</h4>

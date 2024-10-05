@@ -98,7 +98,7 @@ const SelfMonitoringParametersGraph = () => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200">
+    <div className="bg-white bg-opacity-45 backdrop-blur-lg w-full shadow-lg rounded-lg p-6 border border-gray-200">
       <h2 className="text-lg font-semibold mb-4">Self Monitoring</h2>
       <GraphsCard parameters={parameters} handleCardClick={handleCardClick} formatDate={formatDate} />
 
