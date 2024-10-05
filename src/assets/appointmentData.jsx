@@ -14,12 +14,14 @@ const appointmentData = () => {
                     date: '23/12/2024',
                     results: '120 mg/dL (Normal)',
                     comments: 'Recommended to monitor regularly.',
+                    status: 'result available'
                 },
                 {
                     name: 'Hemoglobin Test',
                     date: '20/12/2024',
                     results: '13.5 g/dL',
                     comments: 'Levels within the normal range.',
+                    status: 'result available'
                 },
             ],
         },
@@ -35,12 +37,14 @@ const appointmentData = () => {
                     date: '17/11/2024',
                     results: '120/80 mmHg',
                     comments: 'Normal blood pressure reading.',
+                    status: 'result available'
                 },
                 {
                     name: 'Complete Blood Count (CBC)',
                     date: '16/11/2024',
                     results: 'All values within normal range.',
                     comments: 'No signs of anemia.',
+                    status: 'result available'
                 },
             ],
         },
@@ -56,6 +60,7 @@ const appointmentData = () => {
                     date: '15/10/2024',
                     results: 'Total Cholesterol: 180 mg/dL',
                     comments: 'Cholesterol levels are healthy.',
+                    status: 'result available'
                 },
             ],
         },
@@ -70,6 +75,7 @@ const appointmentData = () => {
                     date: '29/09/2024',
                     results: 'Fetal growth normal, no abnormalities detected.',
                     comments: 'Everything is progressing normally.',
+                    status: 'test prescribed'
                 },
             ],
         },
@@ -85,6 +91,7 @@ const appointmentData = () => {
                     date: '13/08/2024',
                     results: 'All values within normal range.',
                     comments: 'No concerns from the initial bloodwork.',
+                    status: 'test taken'
                 },
             ],
         },

@@ -55,13 +55,7 @@ const GraphModal = ({ openModal, setOpenModal, selectedParameter, onSave }) => {
         </div>
 
         <div className="h-full overflow-y-auto">
-          <Button
-            color="green"
-            onClick={handleAddNewEntry}
-            className="mb-4"
-          >
-            Add New Entry
-          </Button>
+          
           <div className="h-full">
             <Table>
               <Table.Head>
@@ -104,6 +98,13 @@ const GraphModal = ({ openModal, setOpenModal, selectedParameter, onSave }) => {
             </Table>
           </div>
         </div>
+        <Button
+            color="green"
+            onClick={handleAddNewEntry}
+            className="mb-4"
+          >
+            Add New Entry
+          </Button>
       </Modal.Body>
 
       <Modal.Footer>
