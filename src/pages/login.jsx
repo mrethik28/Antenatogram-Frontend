@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
-// import axios from "../api/axios";
+import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 
-// const LOGIN_URL = "/login";
+const LOGIN_URL = '/auth/signin';
 
 const Login = () => {
   const { auth, setAuth } = useAuth();
@@ -18,31 +18,32 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
 
 
-  useEffect(() => {
-
-  }, [])
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, pwd]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setAuth({ ...auth, loggedIn: true });
-    if (auth.role === "patient") navigate("/user");
-    else navigate("/patients");
+    const role = auth.role;
+    try {
+      const result = await axios.post(LOGIN_URL, {
+        "auth": { "role": role },
+        "email": email,
+        "password": pwd
+      });
+      setErrMsg("");
+      setAuth({ ...auth, loggedIn: true, "accesstoken": result.data.accesstoken });
+      console.log(result.data);
+      if (role == "patient") navigate('/user');
+      else navigate("/patients");
+
+
+    } catch (error) {
+      console.log(error);
+      setErrMsg(error.response.data.error);
+    }
+
   };
 
   return (
     <section className="h-11/12 flex items-center justify-center">
       <div className="w-4/5 md:max-w-md  rounded-lg shadow-md p-6 space-y-6 bg-white">
-        <p
-          ref={errRef}
-          className={errMsg ? "text-red-500" : "hidden"}
-          aria-live="assertive"
-        >
-          {errMsg}
-        </p>
         <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl">
           {auth.role} login
         </h1>
@@ -81,6 +82,13 @@ const Login = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
             />
           </div>
+          <p
+            ref={errRef}
+            className={errMsg ? "text-red-500" : "hidden"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
           <button
             type="submit"
             className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 text-center"

@@ -8,6 +8,8 @@ import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
+const REGISTER_URL = '/auth/signup';
+
 const emailSchema = Joi.object({
     email: Joi.string()
         .email({ tlds: { allow: false } })
@@ -35,7 +37,7 @@ const passwordSchema = Joi.object({
 const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
-    const {setAuth} = useAuth();
+    const { auth, setAuth } = useAuth();
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState('');
     const [validEmail, setValidEmail] = useState(false);
@@ -67,7 +69,6 @@ const Register = () => {
 
         }
         else setValidEmail(true);
-        console.log(result);
     }, [email]);
 
     useEffect(() => {
@@ -80,35 +81,17 @@ const Register = () => {
         else setValidPwd(true);
         const match = pwd == matchPwd;
         setValidMatch(match);
-        console.log(result);
     }, [pwd, matchPwd]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-        const response = await axios.post("/register", JSON.stringify({email , pwd}) , { withCredentials : true} );
-        if(response.status == 200) {
-            localStorage.setItem('accesstoken', "Bearer " + response.data.accesstoken);   
-            const authBody = jwtDecode(response.data.accesstoken);
-            setAuth(authBody)
-            navigate('/user');
-
-        }
-        
+            const response = await axios.post(REGISTER_URL, { "auth": { "role": auth.role }, email, password: pwd }, { withCredentials: true });
+            if (response.status == 200) navigate('/login');
         } catch (error) {
-            if(error.response.status == 402){
-                setErrMsg("email already exists");
-                setEmail("");
-                setPwd("");
-                setmatchPwd("");
-            }          
+            setErrMsg(error.response.data.error);
         }
-
-        
     }
-
-
-
     return (
         <section className="">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
@@ -195,13 +178,13 @@ const Register = () => {
                                 </button>
                             </div>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                            {`Already have an Account?`}<br />
-                            <span className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                                <Link to={'/login'}>
-                                    Login
-                                </Link>
-                            </span>
-                        </p>
+                                {`Already have an Account?`}<br />
+                                <span className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                    <Link to={'/login'}>
+                                        Login
+                                    </Link>
+                                </span>
+                            </p>
                         </form>
                     </div>
                 </div>
