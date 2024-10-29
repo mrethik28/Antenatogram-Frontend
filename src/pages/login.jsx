@@ -7,8 +7,10 @@ const LOGIN_URL = '/auth/signin';
 
 const Login = () => {
   const { auth, setAuth } = useAuth();
+  
   const navigate = useNavigate();
 
+  if(auth.loggedIn) navigate( auth.role == 'patient' ? '/user': '/patients');
 
   const userRef = useRef();
   const errRef = useRef();
@@ -29,6 +31,7 @@ const Login = () => {
       });
       setErrMsg("");
       setAuth({ ...auth, loggedIn: true, "accesstoken": result.data.accesstoken });
+      if(result.data.pregnancyid) setAuth({...auth, "pregnancyid":result.data.pregnancyid});
       console.log(result.data);
       if (role == "patient") navigate('/user');
       else navigate("/patients");

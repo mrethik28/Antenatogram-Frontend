@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types */
 import useAuth from "../../hooks/useAuth";
 import { Link } from 'react-router-dom';
 import { Avatar, Dropdown } from "flowbite-react";
@@ -5,10 +7,19 @@ import useSignOut from "../../hooks/useSignOut";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = ({ toggleSidebar }) => {  // Remove async
     const { auth } = useAuth();
     const authstatus = auth.loggedIn;
-    const signOutHandler = useSignOut();
+    const signOut = useSignOut();  // Get the signOut function
+
+    // Create a handler for sign out that can be async
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+        } catch (error) {
+            console.error('Sign out error:', error);
+        }
+    };
 
     return (
         <div className="fixed top-0 left-0 right-0 h-1/12 bg-gray-100 bg-opacity-30 backdrop-blur-md flex justify-between items-center px-1/12 z-50">
@@ -32,7 +43,7 @@ const Navbar = ({ toggleSidebar }) => {
                                     <span className="block truncate text-sm font-medium">{"san.patel22@gmail.com"}</span>
                                 </Dropdown.Header>
                                 <Dropdown.Divider />
-                                <Dropdown.Item onClick={signOutHandler}>Sign out</Dropdown.Item>
+                                <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
                             </Dropdown>
                         </div>
                 ) : (

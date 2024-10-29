@@ -55,6 +55,8 @@ const Register = () => {
     const [errMsg, setErrMsg] = useState('');
 
     const navigate = useNavigate();
+    if(auth.loggedIn) navigate( auth.role == 'patient' ? '/user': '/patients');
+
 
     useEffect(() => {
         userRef.current.focus();
