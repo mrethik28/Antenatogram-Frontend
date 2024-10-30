@@ -25,7 +25,7 @@ function App() {
         {/* Protected Routes */}
         <Route element={<RequireAuth allowedRoles={["patient", "doctor"]} />}>
           <Route path='user' element={<Dashboard />} />
-          <Route path='history' element={<PatientHistory />} />
+          <Route path='profile' element={<PatientHistory />} />
           <Route path='files' element={<AllScansAndReports />} />
           <Route path='appointments' element={<AllAppointments />} />
         </Route>

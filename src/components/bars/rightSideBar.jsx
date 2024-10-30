@@ -52,7 +52,7 @@ const Sidebar = () => {
             </p>
 
             <Button className="mx-auto p-3 mt-4 text-sm md:text-md text-white bg-purple-700 backdrop-blur-md hover:bg-purple-800">
-              <Link to="/history" className="block w-full h-full text-white">
+              <Link to="/profile" className="block w-full h-full text-white">
                 View History
               </Link>
             </Button>

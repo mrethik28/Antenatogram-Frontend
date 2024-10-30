@@ -9,9 +9,6 @@ const Login = () => {
   const { auth, setAuth } = useAuth();
   
   const navigate = useNavigate();
-
-  if(auth.loggedIn) navigate( auth.role == 'patient' ? '/user': '/patients');
-
   const userRef = useRef();
   const errRef = useRef();
 
@@ -19,6 +16,10 @@ const Login = () => {
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
+  useEffect(() => {
+    if(auth.loggedIn) navigate( auth.role == 'patient' ? '/user': '/patients');
+
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
